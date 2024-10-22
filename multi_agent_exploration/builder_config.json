@@ -1,0 +1,10 @@
+[
+    {
+        "api_key": "<add yours>",
+        "api_type": "azure",
+        "api_version": "2024-02-01",
+        "base_url": "<add yours>",
+        "model": "<add yours>",
+        "temperature": 0.0
+    }
+]

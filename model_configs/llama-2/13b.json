@@ -1,0 +1,16 @@
+[
+    {
+        "model": "meta-llama/LLaMA-2-13b-hf",
+        "name": "LLaMA-2-13b",
+        "tokenizer": "meta-llama/LLaMA-2-13b-hf",
+        "task": "text-generation",
+        "remote": false
+    },
+    {
+        "model": "meta-llama/LLaMA-2-13b-chat-hf",
+        "name": "LLaMA-2-13b-Chat",
+        "tokenizer": "meta-llama/LLaMA-2-13b-chat-hf",
+        "task": "text-generation",
+        "remote": false
+    }
+]

@@ -1,0 +1,46 @@
+Original Table:
+date|territory|screens|rank|gross|($)
+october 20 , 2006|turkey|378|1|146268
+october 25 , 2006|belgium|6|19|38916
+october 25 , 2006|germany|52|12|133228
+october 26 , 2006|austria|4|13|41780
+october 26 , 2006|netherlands|17|14|53749
+october 27 , 2006|united kingdom|4|24|34704
+
+Table Summary: Movie Sales by Country
+
+Edits applied:
+
+Edit 1: Come up with a interesting question about this table. The question must have a CONCISE verifiable answer. The question should go hand in hand with ensuring the augmentation introduces complex cross-document dependencies. Make sure that the question + new table can only be answered if the model reasons cross-row / cross-document.
+E.g. “Rank the movie's sales by country.” -- requires reasoning/comparing over the different rows in the document. Note: we will edit the table further to make this even more challenging.
+
+Edit 2: Remove extraneous columns to avoid overspecification in the resultant documents
+E.g. Remove the screens and rank columns since they’re not relevant
+
+Edit 3: Round some of the numeric values to make the information more realistic in the articles
+E.g. round the gross sales numbers to thousands
+
+Edit 4: Add ‘multi-hop’ information, or additional rows that necessitate synthesizing information across documents
+E.g. add an October 26th entry for Germany for $195k (now there are two rows for Germany) -- These need to be added into order to calculate the Germany sales. (Note that this combined number is now larger than Turkey's)
+
+Edit 5: Add secondary / peripheral / fictional information to contextualize/personalize the documents.
+- add a "generation context" column with some additional guidance to guide the document generation. This should include 1: instructions on document length + writing style as well as (potentially fictional) superfleuous content that might naturally occur in a document of this type.
+- add a fictionalized film name (Nightmares of Glory)
+
+Edit 6: Introduce cross-document dependencies by obfuscating some linked information. The dependencies must be utilized within the question answering process.
+E.g. the germany Oct. 26th entry was modified. The country information was obfuscated, but the daily revenue was defined in terms of the prior day, allowing the model to refer back to the Oct. 25 row.
+
+Edit 7: What are the inconsistencies between the table, question and answer? Update the example to correct these so we have a coherent example. 
+
+Resultant Augmented Table:
+generation context|date|country|daily revenue ($)|film
+short article about total movie sales|october 20 , 2006|turkey|146200|Nightmares of Glory
+article about total movie sales|october 25 , 2006|belgium|39000|Nightmares of Glory
+mid-length article about daily movie sales|october 25 , 2006|germany|133000|Nightmares of Glory
+article about total movie sales|october 26 , 2006|austria|42000|Nightmares of Glory
+article about total movie sales|october 26 , 2006|netherlands|54000|Nightmares of Glory
+article about total movie sales, and interviewing a fictional moviegoer|october 27 , 2006|united kingdom|34700|Nightmares of Glory
+article about total movie sales|october 26 , 2006|<info not provided. write the article as if this was common knowledge>|"195,000, roughly 60,000 more than yesterday's sales"|Nightmares of Glory
+
+Augmented Table Question: Rank the movie's sales by country.
+Augmented Table Answer: Germany (133000+195000), Turkey (146200), Netherlands (54000), Austria (42000), Belgium (39000), United Kingdom (34700)

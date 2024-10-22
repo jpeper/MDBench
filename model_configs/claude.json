@@ -1,0 +1,12 @@
+[
+    {
+        "model": "claude-3-opus-20240229",
+        "name": "Claude-3-Opus",
+        "version": "20240229"
+    },
+    {
+        "model": "claude-3-5-sonnet-20240620",
+        "name": "Claude-3.5-Sonnet",
+        "version": "20240620"
+    }
+]

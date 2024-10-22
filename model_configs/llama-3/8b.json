@@ -1,0 +1,16 @@
+[
+    {
+        "model": "meta-llama/Meta-LLaMA-3-8B-Instruct",
+        "name": "LLaMA-3-8B-Instruct",
+        "tokenizer": "meta-llama/Meta-LLaMA-3-8B-Instruct",
+        "task": "text-generation",
+        "remote": false
+    },
+    {
+        "model": "meta-llama/Meta-LLaMA-3-8B",
+        "name": "LLaMA-3-8B",
+        "tokenizer": "meta-llama/Meta-LLaMA-3-8B-Instruct",
+        "task": "text-generation",
+        "remote": false
+    }
+]

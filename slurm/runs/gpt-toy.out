@@ -1,0 +1,84 @@
+Running inference on gpt-4o
+Processing dataset...
+Processing Dataset:   0%|          | 0/37 [00:00<?, ?item/s]Processing Dataset: 100%|██████████| 37/37 [00:00<00:00, 224586.47item/s]
+37 examples.
+Concurrently invoking GPT-4O:   0%|          | 0/37 [00:00<?, ?prompt/s]Concurrently invoking GPT-4O: 100%|██████████| 37/37 [00:00<00:00, 378510.36prompt/s]
+[1mConcurrent executed 37 examples in 1.23 seconds.[0m
+model_output/documents/gpt/gpt-4o/toy/zero-shot_output.json
+Running inference on gpt-35-long
+Processing dataset...
+Processing Dataset:   0%|          | 0/37 [00:00<?, ?item/s]Processing Dataset: 100%|██████████| 37/37 [00:00<00:00, 279620.27item/s]
+37 examples.
+Concurrently invoking GPT-35-LONG:   0%|          | 0/37 [00:00<?, ?prompt/s]Concurrently invoking GPT-35-LONG: 100%|██████████| 37/37 [00:00<00:00, 1048576.00prompt/s]
+[1mConcurrent executed 37 examples in 0.93 seconds.[0m
+model_output/documents/gpt/gpt-35-long/toy/zero-shot_output.json
+Running inference on gpt-4o
+Processing dataset...
+Processing Dataset:   0%|          | 0/37 [00:00<?, ?item/s]Processing Dataset: 100%|██████████| 37/37 [00:00<00:00, 201283.07item/s]
+37 examples.
+Concurrently invoking GPT-4O:   0%|          | 0/37 [00:00<?, ?prompt/s]Concurrently invoking GPT-4O: 100%|██████████| 37/37 [00:00<00:00, 988466.55prompt/s]
+[1mConcurrent executed 37 examples in 0.95 seconds.[0m
+model_output/documents/gpt/gpt-4o/toy/zero-shot-CoT_output.json
+Running inference on gpt-35-long
+Processing dataset...
+Processing Dataset:   0%|          | 0/37 [00:00<?, ?item/s]Processing Dataset: 100%|██████████| 37/37 [00:00<00:00, 289532.18item/s]
+37 examples.
+Concurrently invoking GPT-35-LONG:   0%|          | 0/37 [00:00<?, ?prompt/s]Concurrently invoking GPT-35-LONG: 100%|██████████| 37/37 [00:00<00:00, 1001220.95prompt/s]
+[1mConcurrent executed 37 examples in 0.95 seconds.[0m
+model_output/documents/gpt/gpt-35-long/toy/zero-shot-CoT_output.json
+Running inference on gpt-4o
+Processing dataset...
+Processing Dataset:   0%|          | 0/37 [00:00<?, ?item/s]Processing Dataset: 100%|██████████| 37/37 [00:00<00:00, 159168.46item/s]
+37 examples.
+Concurrently invoking GPT-4O:   0%|          | 0/37 [00:00<?, ?prompt/s]Concurrently invoking GPT-4O: 100%|██████████| 37/37 [00:00<00:00, 1100632.96prompt/s]
+[1mConcurrent executed 37 examples in 0.94 seconds.[0m
+model_output/documents/gpt/gpt-4o/toy/few-shot_output.json
+Running inference on gpt-35-long
+Processing dataset...
+Processing Dataset:   0%|          | 0/37 [00:00<?, ?item/s]Processing Dataset: 100%|██████████| 37/37 [00:00<00:00, 129648.49item/s]
+37 examples.
+Concurrently invoking GPT-35-LONG:   0%|          | 0/37 [00:00<?, ?prompt/s]Concurrently invoking GPT-35-LONG: 100%|██████████| 37/37 [00:00<00:00, 1014308.81prompt/s]
+[1mConcurrent executed 37 examples in 0.94 seconds.[0m
+model_output/documents/gpt/gpt-35-long/toy/few-shot_output.json
+Running inference on gpt-4o
+Processing dataset...
+Processing Dataset:   0%|          | 0/37 [00:00<?, ?item/s]Processing Dataset: 100%|██████████| 37/37 [00:00<00:00, 193986.56item/s]
+37 examples.
+Concurrently invoking GPT-4O:   0%|          | 0/37 [00:00<?, ?prompt/s]Concurrently invoking GPT-4O: 100%|██████████| 37/37 [00:00<00:00, 1014308.81prompt/s]
+[1mConcurrent executed 37 examples in 0.97 seconds.[0m
+model_output/table/gpt/gpt-4o/toy/zero-shot_output.json
+Running inference on gpt-35-long
+Processing dataset...
+Processing Dataset:   0%|          | 0/37 [00:00<?, ?item/s]Processing Dataset: 100%|██████████| 37/37 [00:00<00:00, 163357.10item/s]
+37 examples.
+Concurrently invoking GPT-35-LONG:   0%|          | 0/37 [00:00<?, ?prompt/s]Concurrently invoking GPT-35-LONG: 100%|██████████| 37/37 [00:00<00:00, 857399.16prompt/s]
+[1mConcurrent executed 37 examples in 0.96 seconds.[0m
+model_output/table/gpt/gpt-35-long/toy/zero-shot_output.json
+Running inference on gpt-4o
+Processing dataset...
+Processing Dataset:   0%|          | 0/37 [00:00<?, ?item/s]Processing Dataset: 100%|██████████| 37/37 [00:00<00:00, 283192.06item/s]
+37 examples.
+Concurrently invoking GPT-4O:   0%|          | 0/37 [00:00<?, ?prompt/s]Concurrently invoking GPT-4O: 100%|██████████| 37/37 [00:00<00:00, 1001220.95prompt/s]
+[1mConcurrent executed 37 examples in 0.96 seconds.[0m
+model_output/table/gpt/gpt-4o/toy/zero-shot-CoT_output.json
+Running inference on gpt-35-long
+Processing dataset...
+Processing Dataset:   0%|          | 0/37 [00:00<?, ?item/s]Processing Dataset: 100%|██████████| 37/37 [00:00<00:00, 259948.49item/s]
+37 examples.
+Concurrently invoking GPT-35-LONG:   0%|          | 0/37 [00:00<?, ?prompt/s]Concurrently invoking GPT-35-LONG: 100%|██████████| 37/37 [00:00<00:00, 969932.80prompt/s]
+[1mConcurrent executed 37 examples in 0.92 seconds.[0m
+model_output/table/gpt/gpt-35-long/toy/zero-shot-CoT_output.json
+Running inference on gpt-4o
+Processing dataset...
+Processing Dataset:   0%|          | 0/37 [00:00<?, ?item/s]Processing Dataset: 100%|██████████| 37/37 [00:00<00:00, 139810.13item/s]
+37 examples.
+Concurrently invoking GPT-4O:   0%|          | 0/37 [00:00<?, ?prompt/s]Concurrently invoking GPT-4O: 100%|██████████| 37/37 [00:00<00:00, 946275.90prompt/s]
+[1mConcurrent executed 37 examples in 0.96 seconds.[0m
+model_output/table/gpt/gpt-4o/toy/few-shot_output.json
+Running inference on gpt-35-long
+Processing dataset...
+Processing Dataset:   0%|          | 0/37 [00:00<?, ?item/s]Processing Dataset: 100%|██████████| 37/37 [00:00<00:00, 94975.06item/s]
+37 examples.
+Concurrently invoking GPT-35-LONG:   0%|          | 0/37 [00:00<?, ?prompt/s]Concurrently invoking GPT-35-LONG: 100%|██████████| 37/37 [00:00<00:00, 576911.70prompt/s]
+[1mConcurrent executed 37 examples in 0.97 seconds.[0m
+model_output/table/gpt/gpt-35-long/toy/few-shot_output.json

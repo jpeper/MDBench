@@ -1,0 +1,6 @@
+[
+    {
+        "model": "meta/meta-llama-3-70b-instruct",
+        "name": "LLaMA-3-70B-Instruct"
+    }
+]

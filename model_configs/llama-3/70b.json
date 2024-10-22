@@ -1,0 +1,16 @@
+[
+    {
+        "model": "meta-llama/Meta-LLaMA-3-70B-Instruct",
+        "name": "LLaMA-3-70B-Instruct",
+        "tokenizer": "meta-llama/Meta-LLaMA-3-70B-Instruct",
+        "task": "text-generation",
+        "remote": false
+    },
+    {
+        "model": "meta-llama/Meta-LLaMA-3-70B",
+        "name": "LLaMA-3-70B",
+        "tokenizer": "meta-llama/Meta-LLaMA-3-70B",
+        "task": "text-generation",
+        "remote": false
+    }
+]

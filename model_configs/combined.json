@@ -1,0 +1,35 @@
+[
+    {
+        "model": "claude-3-opus-20240229",
+        "name": "Claude-3-Opus",
+        "version": "20240229"
+    },
+    {
+        "model": "claude-3-5-sonnet-20240620",
+        "name": "Claude-3.5-Sonnet",
+        "version": "20240620"
+    },
+    {
+        "model": "gemini-1.5-pro",
+        "name": "Gemini-1.5-Pro",
+        "version": "0514"
+    },
+    {
+        "model": "gpt-4o",
+        "name": "GPT-4o",
+        "version": "2024-05-13"
+    },
+    {
+        "model": "gpt-35-long",
+        "name": "GPT-3.5-Turbo",
+        "version": "0613"
+    },
+    {
+        "model": "meta/meta-llama-3-70b-instruct",
+        "name": "LLaMA-3-70B-Instruct"
+    },
+    {
+        "model": "meta/meta-llama-3-8b-instruct",
+        "name": "LLaMA-3-8B-Instruct"
+    }
+]

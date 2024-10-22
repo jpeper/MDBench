@@ -1,0 +1,247 @@
+I am trying to generate interesting multi-document reasoning problems using tabular information as seed data for the documents. Each row in the table will eventually be converted into a document. Before doing document generation we want to first create a challenging question for this example, which may require altering the table to introduce more complex reasoning requirements.
+
+Below are some ways through which we could make an example more challenging. I first name each approach, and provide a description and some concrete examples of how we might increase the difficulty of such a table. Note that there is some overlap in the ‘atomic’ skills required for each reasoning types.
+
+[Multi-hop Reasoning] – The ability to solve problems requiring multiple steps to arrive at a solution
+
+Example
+Baseline Example: Which country had the most showings and how many was this in total?
+Original table: 
+|index|date|territory|showings|
+|1|october 20, 2006|turkey|200|
+|2|october 20, 2006|belgium|600|
+
+Answer: Belgium had the most with 600 showings.
+Answer rationale: Turkey had 200 showings and Belgium had 600. 600 > 200, therefore Turkey had the most showings.
+Commentary: This is a simple reasoning process as it requires a simple comparison of two values with no additional reasoning required.
+
+Harder Example: Which country had the most showings and how many was this in total?
+Edited Table:
+
+|index|date|territory|showings|
+|1|october 20, 2006|turkey|200|
+|2|october 20, 2006|belgium|600|
+|3|october 25, 2006|turkey|500|
+
+Answer: Turkey had the most with 700 showings.
+Answer Rationale: Turkey had showings on two different days, so the total is 200+500=700 showings. 700 > Belgium’s 600, therefore Turkey had the most.
+Commentary: By adding a new row with complementary information, we necessitate an additional reasoning hop to correctly answer the question. Note that this table was edited specifically such that the answer (Turkey) is flipped from the original answer (Belgium) in the simple example. Edits like these ensure the reasoning cannot be shortcutted (e.g., by simply selecting the row with the highest showings). 
+
+[Temporal Reasoning] – The ability to handle temporal information and dependencies.
+
+Baseline Example: How many total showings were there in each month?
+
+|index|date|territory|showings|
+|1|october 20, 2006|turkey|200|
+|2|november 21, 2006|belgium|600|
+|3|november 21, 2006|turkey|400|
+|4|november 22, 2006|belgium|600|
+
+Answer: October 2006 had 200 showings, while November had 1,600
+Answer Rationale: October had just one day with 200 showings. November had 3 showings total, summing to 600+400+600 showings total.
+Commentary: This is fairly straightforward as we simply sum all rows sharing the same month.
+
+Harder Example: How many total showings were there in each month?
+
+|index|date|territory|showings|notes|
+|1|october 20, 2006|turkey|200|Opening day in Turkey|
+|2|november 21, 2006|belgium|600|Opening day in Belgium|
+|3|the week after opening day|turkey|400||
+|4|november 23, 2006|belgium|600||
+
+Answer: October 2006 had 600 showings, while November had 1,200
+Answer Rationale: In Turkey, the week after opening day fell in the month of October, therefore there were 200 (from opening day) + 400 (from the week after) = 600 showings in October. November had 600+600 = 1,200 showings, all from Belgium.
+Commentary: We introduce a cross-row dependency here that requires temporal reasoning to solve. Namely, we need to intuit that, given opening day is on October 20th, the week immediately following it must fall within the month of October. Again, we intentionally edit the values in the table (and add a ‘notes’ column) to ensure that the answer (600 in October, 1200 in November) necessarily required resolving this cross-row dependency.
+
+[Numeric Reasoning] – The ability to handle numeric values and perform numerical operations
+Baseline Example: Rank each day by the total showings.
+
+|index|date|territory|showings|
+|1|october 20, 2006|turkey|200|
+|2|november 21, 2006|belgium|600|
+|3|november 21, 2006|turkey|400|
+|4|november 22, 2006|belgium|600|
+
+Answer: November 21st had the most showings with 1000, followed by November 22nd, then October 20th.
+Answer Rationale: November 21st had 1000 totals showings – 600 in Belgium and 400 in Turkey. This was greater than the 600 on November 22nd and the 200 on October 20th.
+Commentary: This is a simple case of performing numeric operations, having to sum values over different rows to identify the correct answer.
+
+Harder Example: Rank each day by the total sales
+
+|index|date|territory|showings|Avg. sales per showing ($)|
+|1|october 20, 2006|turkey|200|6000|
+|2|november 21, 2006|belgium|600|1000|
+|3|november 21, 2006|turkey|400|1000|
+|4|november 22, 2006|belgium|600|500|
+
+Answer: October 20th had the highest sales, followed by November 21st, then November 22nd
+Answer Rationale: October 20 had 200 showings * $6000 per showing = $1,200,000. November had 600*$1000 = $600,000 from Belgium and 400*$1000 = $400,000 from Turkey, totalling $1,000,000. November 22 had 600 * $500 = $300,000 in sales.
+Commentary: This reasoning requires calculating values over two different columns, and then additionally summing values over associated rows (e.g. the november 21 entries).
+
+
+[Information Aggregation] – The ability to align, compare and/or contrast knowledge that may be present. This includes non-numeric knowledge.
+
+Baseline Example: Rank the teams by number of wins in the series.
+
+|index|race|pole position|winning team|
+|1|May 7, 1992|nico valencia|ferrari|
+|2|May 21, 1992|mark steedman|bmw|
+|3|June 4, 1992|bonnie bobcat|mclaren|
+|4|June 18, 1992|elio muchin|renault|
+|5|July 2, 1992|tammy tiger|ford|
+|6|July 16, 1992|tyrell eshar|ferrari|
+|7|July 30, 1992|alain prost|ferrari|
+|8|August 13, 1992|tigre trees|renault|
+
+
+Answer: Ferrari, Renault, and T-3 are BMW, McLaren and Ford.
+Answer Rationale: Ferrari was listed as the winning team three times, Renault twice, and the others once each. 
+Commentary: This is a simple example that required calculating the number of appearances of each team in the ‘winning team’ column.
+
+Harder Example: Identify the top two teams in this race series, and explain any correlation between their success and the weather.
+
+|index|race|pole position|winning team|notable conditions|
+|1|May 7, 1992|nico valencia|ferrari|sunny + dry|
+|2|May 21, 1992|mark steedman|bmw|rainy|
+|3|June 4, 1992|bonnie bobcat|mclaren|heavy rain|
+|4|June 18, 1992|elio muchin|renault|slick roads|
+|5|July 2, 1992|tammy tiger|ford|cold and blustery|
+|6|July 16, 1992|tyrell eshar|ferrari|sunny|
+|7|July 30, 1992|alain prost|ferrari|overcast|
+|8|August 13, 1992|tigre trees|renault|damp|
+
+Answer: Ferrari finished first and Renault finished second. Ferrari’s wins were exclusively in conditions with dry pavement, whereas Renault won only in wet conditions.
+Answer Rationale: Ferrari had three wins, and Renault had two wins. The rest of the teams had only one. Notably, Ferrari winning races were only in conditions where the roads were presumably dry (sunny+dry, sunny, and overcast), and Renault’s wins were only on day where the conditions were wet (slick roads, and damp).
+Commentary: This answer requires not only understanding the winning teams, but also realizing that there were patterns in the conditions for both teams. Namely, one had to ascertain that Ferrari performed well on dry days, whereas Renault did well on wet roads. This requires aggregating, comparing, and contrasting values across different rows and teams.
+
+[Soft Reasoning] – The ability to reason abductively and make informed decision in cases where some uncertainty may be present.
+
+Simple Example: Who had the most championships?
+
+|index|Year|Championship Winner|
+|1|2008|Yusef|
+|2|2009|Mattingly|
+|3|2010|Tigre Trees|
+|4|2011|Yusef “Skeeps” Mattingly|
+|5|2012|Tigre|
+|6|2013|John Smith|
+|7|2014|John Smith|
+|8|2015|Harrison Chevrolet|
+
+Answer: Yusef Mattingly, who had wins in 2008, 2009, and 2011
+Answer Rationale: Although not clearly stated, some of the entries likely refer to the same person, just sometimes using only the first name, last name, or a nickname. We can reasonably assume ‘Yusef’, ‘Mattingly’, and ‘Yusef “Skeeps” Mattingly’ all refer to the same individual. Similarly, we see both a ‘Tigre Trees’ and ‘Tigre’ which likely refer to the same. 
+Commentary: This is an example abductive or ‘best guess’ soft reasoning where one could reasonably assume that some of the entries refere to the same canonical entity/person. Notably, this example is one where a wrong answer would be generated by using a simple exact match heuristic as ‘John Smith’ shows up twice, which is less than Yusef Mattingly.
+
+Harder Example: Rank the countries by total sales.
+
+|index|Country|Sales ($)|Notes|
+|1|October 20|Turkey|146200||
+|2|October 25|Belgium|39000||
+|3|October 25|Germany|134000||
+|4|October 26|Austria|42000||
+|5|October 26|Netherlands|54000||
+|6|October 27|United Kingdom|534700||
+|7|October 26|<one that was already mentioned>|195000, roughly 60k more than yesterday's sales.|A follow-up to a prior entry|
+
+
+Answer: United Kingdom, Germany, Turkey, Netherlands, Austria, Belgium
+Answer Rationale: Most country sales are confined to just one row. However, the final row contains sales information that implicitly refers to a country. We see that this country is already mentioned and that this row is a follow-up to a previous entry with sales numbers. The sales value is $195,000 which is stated as 60k more than the prior day sales. We can use this to ascertain what the country is. Namely, we see that there are two entries for the prior day (October 25). Of these two, Germany’s sales were $134,000 which is approximately $60,000 less than $195,000. Belgium’s sales were much lower (over $150k less than $195,000). Therefore, we can reasonably conclude that the October 26 entry in mention refers to Germany. Combining the $134,000 from October 25 and $195,000 from October 26, we see Germany’s total sales are $329,000, which is less than the United Kingdom, but more than Turkey.
+Commentary: This problem requires that one notices that the final row can be linked to a prior row. Once this is done, there is some soft reasoning that clearly leads to the proper solution. So, while there is some abduction reasoning required, it is very clear once you put the pieces together.
+
+_________________________________________
+
+Using this set of reasoning types and demonstrations, I want you to apply this to a new example, which, again, will be used as seed info to generate documents from each row. Namely, given an input table, I want you to create a new table and question. Critically, break down this process into a few steps, and output an intermediate table and rationale that explains what is happening in each step.
+
+Here is an example demonstration of what this process looks like:
+
+Table Description: Movies Sales by Country
+Original Table:
+|index|date|territory|screens|rank|gross($)|
+|1|october 20, 2006|turkey|378|1|246268|
+|2|october 25, 2006|belgium|6|19|38916|
+|3|october 25, 2006|germany|52|12|133228|
+|4|october 26, 2006|austria|4|13|41780|
+|5|october 26, 2006|netherlands|17|14|53749|
+|6|october 27, 2006|united kingdom|4|24|347040|
+
+
+Step 1: Come up with a interesting question about this table. The question must have a CONCISE verifiable answer. The question should go hand in hand with ensuring the augmentation introduces complex cross-document dependencies. In the following steps, make sure that the question + new table can only be answered correctly if the model reasons correctly.
+
+Table Question: Rank the movie's sales by country from highest to lowest.
+Table:
+<unchanged>
+Table Answer: United Kingdom, Turkey, Germany, Netherlands, Austria, Belgium.
+Commentary: This requires reasoning/comparing over the different rows in the document. Note: we will edit the table further to make this even more challenging.
+
+Step 2: Remove extraneous columns to avoid overspecification in the resultant documents. Concretely, we remove the screens and rank columns.
+
+Table Question: <unchanged>
+Table:
+|index|date|territory|gross($)|
+|1|october 20, 2006|turkey|246268|
+|2|october 25, 2006|belgium|38916|
+|3|october 25, 2006|germany|133228|
+|4|october 26, 2006|austria|41780|
+|5|october 26, 2006|netherlands|53749|
+|6|october 27, 2006|united kingdom|347040|
+Table Answer: <unchanged>
+Commentary: We’re eventually converting each row into a article-style document, and ensuring that all knowledge in the row is present and consistent. Since we’re trying to prove out the reasoning specifically for the sales in this example, we can exclude some unused columns to avoid producing documents that are overly specific about other details. Also, we’ll be applying more edits to the table, and those edits could lead to these columns being invalid. Removing them means there is one less thing we have to keep consistent.
+
+Step 3: Truncate some of the numeric values to make the information more realistic in the resultant articles.
+
+Table Question: <unchanged>
+Table:
+|index|date|territory|gross($)|
+|1|october 20, 2006|turkey|246000|
+|2|october 25, 2006|belgium|39000|
+|3|october 25, 2006|germany|133000|
+|4|october 26, 2006|austria|42000|
+|5|october 26, 2006|netherlands|54000|
+|6|october 27, 2006|united kingdom|347000|
+Table Answer: <unchanged>
+Commentary: Again, since these rows will be used to produce article-style documents, we want the content be somewhat natural. Someone writing about movie sales would likely mention sales more broadly such as “belgium had $39,000 in sales” rather than “belgium had $38,916 in sales”
+
+Step 4: Introduce ‘multi-hop’ dependencies, by creating hard cross-row knowledge dependencies.
+
+Table Question: <unchanged>
+Table:
+|index|date|territory|gross($)|
+|1|october 20, 2006|turkey|246000|
+|2|october 25, 2006|belgium|39000|
+|3|october 25, 2006|germany|133000|
+|4|october 26, 2006|austria|42000|
+|5|october 26, 2006|netherlands|54000|
+|6|october 27, 2006|united kingdom|347000|
+|7|october 26, 2006|germany|195000|
+Table Answer: United Kingdom, Germany, Turkey, Netherlands, Austria, Belgium.
+Commentary: We added a new row to the table containing another Germany entry. The correct ranking now has to realize that germany has two entries which must be summed (133000+195000) to generate the total sales. This number is now larger than Turkey’s, so the answer changes. We want examples that necessarily lead to incorrect solutions if the reasoning is incorrect.
+
+Step 5: Introduce cross-document soft reasoning dependencies to the problem by (reversibly) obfuscating some critical information.
+Table Question: <unchanged>
+Table:
+|index|date|territory|gross($)|
+|1|october 20, 2006|turkey|246000|
+|2|october 25, 2006|belgium|39000|
+|3|october 25, 2006|germany|133000|
+|4|october 26, 2006|austria|42000|
+|5|october 26, 2006|netherlands|54000|
+|6|october 27, 2006|united kingdom|347000|
+|7|october 26, 2006|<not mentioned>|195000, roughly 60,000 more than yesterday’s sales|
+Table Answer: <unchanged>
+Commentary: We make the reasoning more challenging by removing the exact match association in the country column for the germany rows. This is akin to requiring co-reference resolution. We make this resolveable by adding in clues in the gross sales column. Namely, we indicate that row 7 is $60,000 more than than the prior day. We can leverage the date to find that row 2 and row 3 are relevant, and then narrow this by seeing that the $195,000 is roughly $60,000 more than the value in row 3. Therefore, it is possible to link row 3 and 7, but now it requires some soft reasoning. Again, something like this case could naturally happen in a document that is referring back to a prior article and using co-reference.
+
+Step 6: Add secondary/peripheral/fictional information that will result in an interesting, diverse, and natural document set.
+Table Question: <unchanged>
+Table:
+|index|date|territory|gross($)|film name|generation context|
+|1|october 20, 2006|turkey|246000|Nightmares of Glory|This should be a brief article about the movie and its sales|
+|2|october 25, 2006|belgium|39000|Nightmares of Glory|Write a 3-paragraph article about the movie and its sales, and also create a short interview with someone who attended a screening|
+|3|october 25, 2006|germany|133000|Nightmares of Glory|Write a 4-paragraph summary of the audience opinions while also reporting the sales.
+|4|october 26, 2006|austria|42000|Nightmares of Glory|Talk about the sales and also include an interview with the director|
+|5|october 26, 2006|netherlands|54000|Nightmares of Glory|Write a scathing article talking about the poor sales|
+|6|october 27, 2006|united kingdom|347000|Nightmares of Glory|Talk about movie sales and include a brief negative editorial-style review|
+|7|october 26, 2006|<not mentioned>|195000, roughly 60,000 more than yesterday’s sales|Nightmares of Glory|Do not mention the country directly. Perhaps imagine this is written from a local newspaper perspective, therefore they might instead say something like “nationwide sales were $195,000, roughly...”|
+Table Answer: <unchanged>
+Table Commentary: As we’re converting each row into a document, we want to provide some additional instructions on how to do the document creation. We want each document to feel unique and natural in addition to conveying the critical information (ie, date, territory, gross sales, film name). 
+
+Now it’s your turn. Apply this process to the following table. Create and execute step-by-step method for creating a new and challenging example. Be sure to show your work step by step with the intermediate outputs. It's okay if this is lengthy.

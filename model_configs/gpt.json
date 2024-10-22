@@ -1,0 +1,12 @@
+[
+    {
+        "model": "gpt-4o",
+        "name": "GPT-4o",
+        "version": "2024-05-13"
+    },
+    {
+        "model": "gpt-35-long",
+        "name": "GPT-3.5-Turbo",
+        "version": "0613"
+    }
+]
