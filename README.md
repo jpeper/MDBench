@@ -22,6 +22,7 @@
 
   **multi_agent_exploration/** - contains prompts used to automatically + manually spawn multi-agent configurations used as multi-agentic 
   baselines. 
+  
   **scripts/bash** - scripts used for initiating dataset generation + evaluation.  
 
   **scripts/dataset_generation** - scripts + logic used during the data generation proces.  
