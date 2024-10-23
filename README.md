@@ -1,10 +1,10 @@
 
 
-# **MDBench: A SYNTHETIC MULTI-DOCUMENT REASONING BENCHMARK GENERATED WITH KNOWLEDGE GUIDANCE**
+# **MDBench: A Synthetic Multi-Document Reasoning Benchmark Generated With Knowledge Guidance**
 
   This repository contains the accompanying code & resources for the paper:
 
-**MDBench: A SYNTHETIC MULTI-DOCUMENT REASONING BENCHMARK GENERATED WITH KNOWLEDGE GUIDANCE"** [Anonymous Authors] *ICLR 2025* [[pdf]](https://anonymous.url).
+**MDBench: A Synthetic Multi-Document Reasoning Benchmark Generated With Knowledge Guidance*** [Anonymous Authors] *ICLR 2025* [[pdf]](https://anonymous.url).
 
   
 
@@ -23,9 +23,9 @@
   **multi_agent_exploration/** - contains prompts used to automatically + manually spawn multi-agent configurations used as multi-agentic 
   baselines. 
   
-  **scripts/bash** - scripts used for initiating dataset generation + evaluation.  
+  **scripts/bash/** - scripts used for initiating dataset generation + evaluation.  
 
-  **scripts/dataset_generation** - scripts + logic used during the data generation proces.  
+  **scripts/dataset_generation/** - scripts + logic used during the data generation proces.  
 
   **slurm/** - scripts used to spawn jobs on job spooler (TODO: this is somewhat UM-specific).  
 
