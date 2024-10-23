@@ -4,7 +4,7 @@
 
   This repository contains the accompanying code & resources for the paper:
 
-**MDBench: A Synthetic Multi-Document Reasoning Benchmark Generated With Knowledge Guidance*** [Anonymous Authors] *ICLR 2025* [[pdf]](https://anonymous.url).
+**MDBench: A Synthetic Multi-Document Reasoning Benchmark Generated With Knowledge Guidance** [Anonymous Authors] *ICLR 2025* [[pdf]](https://anonymous.url).
 
   
 
